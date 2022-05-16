@@ -1,0 +1,189 @@
+{%extends 'base.html'%}
+{%block head_title%} | {{block.super}}  {%endblock%}
+{%block content%}
+
+
+<div class="post-info-wrapper post-presentation active background lazy" data-src="{{object.media.url}}">
+        <div class="gradient gradient1">
+            <div class="container d-flex align-items-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md col-lg col-xs-12">
+                        <span class="animated fadeInDown badge post-visibility post-public">public</span>
+                        <h1 class="animated fadeInUp">{{object.title}}</h1>
+                        <div class="post-tags animated fadeIn">
+                                <a href="../tag/getting-started/index.html">Getting Started</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md col-lg col-xs-12 spacing-public">
+                        <p class="animated fadeInDown d-none d-sm-block">{{object.precont}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTHOR INFO -->
+            <div class="post-presentation author-wrapper container">
+                <div class="d-flex justify-content-between align-items-center author-info">
+                    <div class="multiple-authors animated fadeIn">
+                            <a href="../author/diego/index.html" class="vertical-align author-info no-name">
+                                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/10258553_490703191059311_1426632935227693623_o-min.jpg"></div>
+                            </a>
+                            <a href="../author/johndoe/index.html" class="vertical-align author-info no-name">
+                                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+                            </a>
+                    </div>
+                    <p class="animated fadeIn"><i class="far fa-clock"></i>{{object.timestamp | timesince}} ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="latest-post">
+            <div class="container d-md-flex align-items-center">
+                <span class="badge badge-primary">{{likes}} likes on this post</span>
+                <form method = 'POST' action = '{% url 'Blog:Likecreate'%}'>{% csrf_token %}
+                    <input type="hidden" name="post" value="{{ object.id }}">
+                    <input type="hidden" name="status" value= 'True'></input>
+                    <button class="badge badge-primary" type = 'submit'>Like Post </button>
+                </form>
+                <span class="badge post-visibility post-paid">Author: {{object.user.username.upper}}</span>
+            </div>
+        </div>
+
+    <div id="main" class="container">
+                <article>
+    <!--kg-card-begin: markdown--><p>We welcom you to our site and appreciate your effort so far in trying to increase your self knowledge using The informations on our site</p>
+<h3 id="thereareafewthingsthatyoushouldknowupfront">{{object.title}}</h3>
+
+<p>{{object.content}}</p>
+<p>The main thing you'll want to read about next is probably: <a href="../the-editor/index.html">the Ghost editor</a>.</p>
+
+</article>
+
+<div class="article-bottom-info d-flex justify-content-between align-items-center post-presentation">
+        <div class="multiple-authors no-name">
+            <a href="../author/diego/index.html" class="vertical-align author-info no-name d-none d-sm-inline-flex">
+                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/10258553_490703191059311_1426632935227693623_o-min.jpg"></div>
+            </a>
+            <a href="../author/johndoe/index.html" class="vertical-align author-info no-name d-none d-sm-inline-flex">
+                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+            </a>
+        </div>
+    <p class="d-block d-sm-none"><i class="fa fa-clock-o"></i> Published {{object.timestamp | timesince}} ago</p>
+    <div class="share-icons icons-visible">
+        <div class="icon-container">
+            <div class="icons">
+                <span>Share this post on:</span>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://valkyrie.xaes.dev/welcome/" onclick="window.open(this.href, 'facebook-share','width=580, height=300');return false;"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/share?text=Welcome%20to%20Ghost&amp;url=https://valkyrie.xaes.dev/welcome/" onclick="window.open(this.href, 'twitter-share', 'width=580, height=300');return false;"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="next-prev-post-wrapper">
+    <div class="row">
+            <div class="col-xs col-sm col-md col-lg">
+                <div class="post post-prev post-presentation background lazy" >
+                    <div class="gradient gradient2 d-flex align-items-center">
+                        <div class="post-info">
+                            <h2>Comments</h2>
+                            {% if comment %}
+                            {% for obj in comment %}
+                            
+                            <p>>>>   {{obj.content}}</P>
+                            
+                            
+                            {% endfor %}
+                            <button class='btn btn-dark btn-sm' type = 'submit'>View all comments </button>
+                            {% else %}
+                            <h5>>>>>>>  No Comments</h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md col-lg">
+                <div class="post post-next post-presentation background lazy" >
+                    <div class="gradient gradient2 d-flex align-items-center">
+                        <div class="post-info">
+                        <form class='input_class' method = 'POST' action = '{% url 'Blog:Commentcreate'%}'>{% csrf_token %}
+                            <input type="hidden" name="post" value="{{ object.id }}">
+                            <textarea  cols="40" rows="10" name="content" placeholder='Write You Comments On the Post' style="background: #212529; margin: auto ;"></textarea>
+                            <button class='btn btn-dark btn-sm' type = 'submit'>Submit </button>
+                        </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+    </div>
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <h1>{{object.title}}</h1>
+<h1>{{object.content}} <small> {{object.user_id}} </small></h1>
+<p>{{object.id}}</p>
+<p> updated {{object.updated | timesince}} ago</p>
+<div>
+    <h2>Comments</h2>
+    {% for obj in comment%}
+       <p> {{obj.content}}</P>
+    {% endfor %}
+</div>
+<form method = 'POST' action = '{% url 'Blog:Likecreate'%}'>{% csrf_token %}
+    <input type="hidden" name="post" value="{{ object.id }}">
+    <input type="hidden" name="status" value= 'True'></input>
+    <button type = 'submit'>{{likes}} Likes </button>
+</form>
+
+<form method = 'POST' action = '{% url 'Blog:Commentcreate'%}'>{% csrf_token %}
+    <input type="hidden" name="post" value="{{ object.id }}">
+    <input type="textarea" name="content"></input>
+    <button type = 'submit'>Submit </button>
+</form> {% endcomment %}
+
+
+
+
+{%endblock%}
+
+     

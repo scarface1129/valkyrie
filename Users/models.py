@@ -22,7 +22,7 @@ class Profile(models.Model):
     address             = models.TextField(blank=True, null=True)
     updated             = models.DateTimeField(auto_now= True)
     media               = models.ImageField(upload_to='media', blank=False, null=False)
-    About               = models.TextField(max_length=30, null=True)
+    About               = models.TextField(max_length=1000, null=True)
     created_at          = models.DateTimeField(auto_now= True)          
 
     def get_absolute_url(self):
@@ -33,7 +33,10 @@ class Profile(models.Model):
     #     return reverse("menus:detail", kwargs= {'pk':self.pk})
 
     def __str__(self):
-        return self.full_name.capitalize()
+        if self.full_name:
+            return self.full_name.capitalize()
+        else:
+            return self.user.username
 
 def send_activation_email(self):
         print("Activation")

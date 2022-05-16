@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+{% block head_title%} {% endblock%}
+{% block content%} 
+
+ <div class="page-info-wrapper post-presentation lazy active background"  data-src="https://images.unsplash.com/photo-1538664964229-b7b80ae49eba?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;3db78ff2e4fe47744b9fb2276d47e136" >
+        <div class="gradient gradient1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md col-lg col-xs-12">
+                        <h1 class="animated fadeInUp">Categories</h1>
+                        <p class="animated fadeInUp">Browse through all our content</p>
+                        <a href='{% url 'Blog:category_create' %}' class="animated fadeInUp badge post-paid"><span>Create New Category</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="latest-post">
+            <div class="container d-md-flex align-items-center">
+                <span class="badge badge-primary">Latest Post</span>
+                <a href="{% url 'Blog:Blog_detail' latest.id %}" class="d-md-inline-flex d-block">{{latest.title}} <span>by {{latest.user.username}}</span></a>
+                <span class="badge post-visibility post-paid">paid</span>
+            </div>
+        </div>
+
+<div id="main">
+    <div class="container">
+        <div class="row">
+            {% for obj in object_list %}
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    {% if obj.media %}
+                    <div class="post post-square lazy post-presentation background"
+                    data-src="{{obj.media.url}}">
+                    {% else %}
+                    <div class="post post-square lazy post-presentation background"
+                    data-src="">
+                    {% endif %}
+                        <div class="gradient gradient2 d-flex align-items-center">
+                            <div class="post-info">
+                                <div class="separator"></div>
+                                <h3><a href="{% url 'Blog:Blog_category_detail' obj.id %} ">{{obj.name}}</a></h3>
+                                <p>{{obj.about}}</p>
+                                <a href='{% url 'Blog:category_update' obj.id %}' class="animated fadeInUp badge post-paid"><span>Update</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="b-frame"></div>
+
+
+{% endblock %}
