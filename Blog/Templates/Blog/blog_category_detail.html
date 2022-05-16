@@ -15,7 +15,7 @@ data-src="">
                     <h1 class="animated fadeInUp">Tag: {{object.name}}</h1>
                     <p class="animated fadeInUp">{{object.about}}</p>
                     {% if request.user.id == 1 %}
-                    <a href='{% url 'Blog:category_update' object.id %}' class="animated fadeInUp badge post-paid"><span>Delete Category</span></a>
+                    <a href='{% url 'Blog:category_delete' object.id %}' class="animated fadeInUp badge post-paid"><span>Delete Category</span></a>
                     {% endif %}
                 </div>
             </div>

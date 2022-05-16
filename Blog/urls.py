@@ -8,7 +8,8 @@ CommentCreateView,
 BlogCategoryList, 
 BlogCategoryDetail, 
 BlogCategorytCreateView, 
-BlogCategoryUpdateView)
+BlogCategoryUpdateView,
+CategoryDelete)
 
 
 app_name = 'Blog'
@@ -24,5 +25,6 @@ urlpatterns = [
     path('categories-post/<pk>/', BlogCategoryDetail.as_view(), name='Blog_category_detail'),
     path('category/create/', BlogCategorytCreateView.as_view(), name='category_create'),
     path('category/update/<pk>/', BlogCategoryUpdateView.as_view(), name='category_update'),
+    path('category/delete/<pk>/', CategoryDelete, name='category_delete'),
 
 ]

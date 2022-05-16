@@ -6,11 +6,6 @@ from .models import Blogs, Likes, Comments, BlogCategory
 from .forms import BlogForm, LikeForm,CommentForm,CategoryForm
 from django.urls import reverse
 
-
-
-
-
-
 class BlogListView(ListView):
 
     def get(self,request):
@@ -43,9 +38,6 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
         obj.user = self.request.user
         return super(BlogCreateView, self).form_valid(form)
 
-
-
-
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'Blog/blog_update.html'
     form_class = BlogForm
@@ -54,9 +46,6 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
     def get_queryset(self):
         pk = self.kwargs['pk']
         return Blogs.objects.filter(id=pk)
-
-
-
 
 class LikesCreateView(LoginRequiredMixin, CreateView):
     template_name = "Blog/blog_detail.html"
@@ -67,7 +56,6 @@ class LikesCreateView(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.status = True
         return super(LikesCreateView, self).form_valid(form)
-
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     template_name = "Blog/blog_detail.html"
@@ -112,3 +100,8 @@ class BlogCategoryUpdateView(LoginRequiredMixin, UpdateView):
     def get_queryset(self):
         pk = self.kwargs['pk']
         return BlogCategory.objects.filter(id=pk)
+
+def CategoryDelete(self, pk):
+    category = BlogCategory.objects.get(id = pk)
+    category.delete()
+    return redirect('Blog:categories-post')
