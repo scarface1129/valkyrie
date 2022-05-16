@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{% block head_title%} | {{block.super}}  {%endblock%}
+{% block content%} 
+
+    <div class="page-info-wrapper post-presentation lazy active background"
+    data-src="https://images.unsplash.com/photo-1536562833330-a59dc2305a5c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;5e29ef7df943648877b7a7de70b0f58f">
+        <div class="gradient gradient1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md col-lg col-xs-12">
+                        <h1 class="animated fadeInUp">Update Profile</h1>
+                        <p class="animated fadeInUp">Continue your journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="latest-post">
+            <div class="container d-md-flex align-items-center">
+                <span class="badge badge-primary"></span>
+                <a href="../thor-the-thunder-god/index.html" class="d-md-inline-flex d-block"> <span></span></a>
+                <span class="badge post-visibility post-paid"></span>
+            </div>
+        </div>
+
+    <div id="main" class="container">
+        <div>
+            {%if form.errors.non_field_errors %}
+                {{ form.errors.non_field_errors }}
+                {%endif%}
+            <div>
+                <form class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit" class="btn btn-primary px-4"> save </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+  
+
+
+
+ {%endblock%} 
+
+<!-- <input type="text" name="name" placeholder="Your Name"><br/><br/>
+	<input type="text" name="location" placeholder="Location"><br/><br/>
+	<input type="text" name="ability" placeholder="Ability"><br/><br/> -->

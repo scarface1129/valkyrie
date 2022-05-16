@@ -1,0 +1,60 @@
+<div id="search-section">
+    <form class="container">
+        <input type="text" class="form form-control" id="search" placeholder="Search a post...">
+        <input type="submit" value="search" class="d-none">
+        <div id="results"></div>
+    </form>
+    <i class="search-panel-toggle fa fa-close fas fa-times"></i>
+    <i class="fas fa-spinner"></i>
+</div>
+
+
+
+ <footer id="rights" class="lazy background"
+data-src="content/images/2019/07/thomas-griesbeck-149034-min.jpg">
+    <div class="gradient gradient2">
+        <div class="container d-md-flex align-items justify-content-between">
+            <p>Valkyrie &copy; 2022.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/republicgamer1/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/RepublicGamer1" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="rss/index.html" taget="_blank" rel="noopener"><i class="fa fa-rss"></i></a>
+            </div>
+        </div>
+            </div>
+</footer>
+
+
+        <script>
+            var ghosthunter_key = "96d6c0298facdbf7cb2c499fcb";
+            var maxPages = parseInt('2');
+            var endMessage = 'No more posts';
+            var Message = 'More posts';
+        </script>
+
+        <script src="/static/assets/built/js/extra4931.js?v=cf893e589b"></script>
+        
+        <script src="/static/assets/built/js/main4931.js?v=cf893e589b"></script>
+   
+        <script src="static/assets/built/js/extra4931.js?v=cf893e589b"></script>
+            <script src="static/assets/built/js/extra-post4931.js?v=cf893e589b"></script>
+    <script>
+        $(document).ready(function() {
+            $("article").fitVids();
+            $( "table" ).wrap("<div class='table-responsive'></div>");
+            $(".kg-gallery-image > img").wrap("<a data-gallery='collection-gallery' data-toggle='lightbox' class='lb-item' href=''></a>");
+            $(".lb-item").each(function(e, t) {
+               $(this).attr("href", $(this).children("img").attr("src"))
+            });
+            $(document).on("click", '[data-toggle="lightbox"]', function(e) {
+               e.preventDefault(), $(this).ekkoLightbox()
+            });
+            document.querySelectorAll(".kg-gallery-image img").forEach(function(e) {
+               var t = e.closest(".kg-gallery-image"),
+                   a = e.attributes.width.value / e.attributes.height.value;
+               t.style.flex = a + " 1 0%"
+            })
+       });
+   </script>
+
+        <script src="static/assets/built/js/main4931.js?v=cf893e589b"></script>

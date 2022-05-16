@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+    <div class="page-info-wrapper post-presentation lazy active background"
+    data-src="https://images.unsplash.com/photo-1536562833330-a59dc2305a5c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;5e29ef7df943648877b7a7de70b0f58f">
+        <div class="gradient gradient1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md col-lg col-xs-12">
+                        <h1 class="animated fadeInUp">Login</h1>
+                        <p class="animated fadeInUp"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="latest-post">
+            <div class="container d-md-flex align-items-center">
+                <span class="badge badge-primary">Latest Post</span>
+                <a href="../thor-the-thunder-god/index.html" class="d-md-inline-flex d-block">Thor, the Nordic God <span>by Diego Balmaceda</span></a>
+                <span class="badge post-visibility post-paid">paid</span>
+            </div>
+        </div>
+
+    <div id="main" class="container">
+        <div>
+            {% if form.errors.non_field_errors %}
+                {{ form.errors.non_field_errors }}
+            {% endif%}
+            {% if form.errors %}
+              <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+              {% else %}
+                <p>Please login to see this page.</p>
+              {% endif %}
+            {% endif %}
+            <div>
+                <form action="{% url 'login' %}" class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    {{form.as_p}}
+                  <input type="submit" class="btn btn-primary px-4" value="login" />
+                  <input type="hidden"  name="next" value="{{ next }}" />
+                   <p><a href="{% url 'register' %}">Dont Have An Account Register</a></p>
+                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+
+  
+
+  
+
+  
+  {# Assumes you setup the password_reset view in your URLconf #}
+  
+
+
+{% endblock %}

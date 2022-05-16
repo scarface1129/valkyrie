@@ -1,0 +1,20 @@
+{%extends "base.html"%} 
+{%block head_title%}{{block.super}}{%endblock%}   
+    {% block content%}
+        <h1>scarface</h1>
+    <h1>{{ block.super }}</h1>
+   
+    <p>hello people {{html_var}} do u see my site</p>
+    {% if num is not none %}
+    <p>Random number is 080328845{{ num }}
+        </p>
+    {% endif %}
+    <p>
+        {% for some_item in some_list %}
+             {%if some_item|divisibleby:"2"%}
+                 Even number
+              {%endif%}   
+            {{ some_item }}<br/>
+    </p>
+        {% endfor %} 
+        {%endblock content%}

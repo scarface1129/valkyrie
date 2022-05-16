@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{% block head_title%} | {{block.super}}  {%endblock%}
+{% block content%} 
+
+
+    <!-- POST INFO WRAPPER -->
+    <div class="page-info-wrapper post-presentation lazy active background"  data-src="https://images.unsplash.com/photo-1538667360417-86635364e683?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;411b9525298072836405d724ab448f8d" >
+        <div class="gradient gradient1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md col-lg col-xs-12">
+                        <h1 class="animated fadeInUp">Our Authors</h1>
+                        <p class="animated fadeInUp">Incredible people, incredible stories</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="latest-post">
+            <div class="container d-md-flex align-items-center">
+                <span class="badge badge-primary">Latest Post</span>
+                <a href="{% url 'Blog:Blog_detail' latest.id %}" class="d-md-inline-flex d-block">{{latest.title}} <span>by {{latest.user.username}}</span></a>
+                <span class="badge post-visibility post-paid">paid</span>
+            </div>
+        </div>
+
+<div id="main">
+    <div class="container">
+        <div class="row">
+				{% for item in object_list %}
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+		                    <div class="author-widget post-presentation">
+		                        <div class="author-cover lazy background"
+		                            data-src="{{item.media.url}}">
+		                            <div class="gradient gradient1">
+		                                <div class="share-icons icons-visible animated fadeIn">
+		                                    <div class="icon-container">
+		                                        <div class="icons">
+                                                    <a href="https://ghost.org/"><i class="fa fa-globe"></i></a>
+                                                    <a href="https://www.facebook.com/ghost"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="https://twitter.com/tryghost"><i class="fab fa-twitter"></i></a>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="author-image background lazy" data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+                                        <h2><a href="{% url 'Users:profile' item.id %}">{{item.user.username}}</a></h2>
+		                            </div>
+		                        </div>
+		                        <div class="author-additional-info">
+		                            <p><i class="fa fa-pencil-alt"></i> Author</p>
+		                        </div>
+		                        <div class="author-body">
+		                            <a href="{% url 'Users:profile' item.id %}">Read More About The Author...</a>
+		                        </div>
+		                    </div>
+				</div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="b-frame"></div>
+{% endblock%}

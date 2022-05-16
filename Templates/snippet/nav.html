@@ -1,0 +1,132 @@
+<div id="main-navbar" class="sticky-ok">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+                <a class="navbar-brand" href="{%  url "Blog:Blog_list" %}">Valkyrie</a>
+            <div class="mobile-navbar-buttons">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button class="search-panel-toggle d-lg-none btn-control navbar-toggler" type="button"><i class="fa fa-search"></i></button>
+                    <div class="dropdown">
+                        <a href="#" class="nav-link change-theme-color dropdown-toggle nav-link navbar-toggler d-lg-none btn-control" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-adjust"></i></a>
+                        <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
+    <span>Base Color</span>
+    <div class="color-selector-wrapper primary-colors">
+        <a class="circular-selector dark" data-value="dark"></a>
+        <a class="circular-selector light" data-value="light"></a>
+    </div>
+    <span>Accent Color</span>
+    <div class="color-selector-wrapper secondary-colors">
+        <a class="circular-selector brown" data-value="brown"></a>
+        <a class="circular-selector green" data-value="green"></a>
+        <a class="circular-selector red" data-value="red"></a>
+        <a class="circular-selector blue" data-value="blue"></a>
+    </div>
+</div>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="dropdown dropdown-form subscribe subscribe-form">
+                        <a href="#" class="nav-link change-theme-color dropdown-toggle navbar-toggler d-lg-none btn-control" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-user"></i></a>
+                        <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
+                            <div class="info-wrapper">
+                                {% if request.user.is_authenticated %}
+                                    <p><a class="" href="{%  url "Users:profile" request.user.id %}">View Profile</a> </p>
+                                    <p><a class="" href="{%  url "Users:profile_update" request.user.id %}">Update Profile</a> </p>
+                                {% else %}
+                                    <form data-members-form="signin">
+                                        <span>Login / Subscribe</span>
+                                        <div class="form-wrapper">
+                                            <input class="subscribe-email input_class" data-members-email="" placeholder="youremail@example.com" autocomplete="false">
+                                            <i class="fas fa-spinner"></i>
+                                        </div>
+                                        <span class="success-text">Check your inbox and click the link to confirm your subscription.</span>
+                                        <span class="error-text">Please enter a valid email address.</span>
+                                        <div class="button-wrapper">
+                                            <button type="submit" class="button primary btn btn-no-background">Submit</button>
+                                        </div>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="main-navbar-content">
+                <ul class="navbar-nav">
+                            <li class="nav-item">
+            <a class="nav-link" href="{%  url "about" %}">About Us</a>
+        </li>
+        
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Users:profilelist' %}">Author List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Blog:Blog_create'%}">Create Blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Blog:categories-post' %}">Tag List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%  url "logout" %}">Logout</a>
+        </li>
+        {% endif %}
+        
+
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="btn-control nav-link search-panel-toggle"><i class="fa fa-search"></i></a>
+                    </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <div class="dropdown">
+                                <a href="#" class="nav-link change-theme-color dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-adjust"></i></a>
+                                <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
+                                    <span>Base Color</span>
+                                    <div class="color-selector-wrapper primary-colors">
+                                        <a class="circular-selector dark" data-value="dark"></a>
+                                        <a class="circular-selector light" data-value="light"></a>
+                                    </div>
+                                    <span>Accent Color</span>
+                                    <div class="color-selector-wrapper secondary-colors">
+                                        <a class="circular-selector brown" data-value="brown"></a>
+                                        <a class="circular-selector green" data-value="green"></a>
+                                        <a class="circular-selector red" data-value="red"></a>
+                                        <a class="circular-selector blue" data-value="blue"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item d-none d-lg-block">
+                            <div class="dropdown dropdown-form subscribe subscribe-form">
+                                <a href="#" class="nav-link change-theme-color dropdown-toggle " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-user"></i></a>
+                                <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
+                                        <div class="info-wrapper">
+                                            {% if request.user.is_authenticated %}
+                                                <p><a class="" href="{%  url "Users:profile" request.user.id %}">View Profile</a> </p>
+                                                <p><a class="" href="{%  url "Users:profile_update" request.user.id %}">Update Profile</a> </p>
+                                            {% else %}
+                                                <form data-members-form="signin">
+                                                    <span>Login / Subscribe</span>
+                                                    <div class="form-wrapper">
+                                                        <input class="subscribe-email input_class" data-members-email="" placeholder="youremail@example.com" autocomplete="false">
+                                                        <i class="fas fa-spinner"></i>
+                                                    </div>
+                                                    <span class="success-text">Check your inbox and click the link to confirm your subscription.</span>
+                                                    <span class="error-text">Please enter a valid email address.</span>
+                                                    <div class="button-wrapper">
+                                                        <button type="submit" class="button primary btn btn-no-background">Submit</button>
+                                                    </div>
+                                                </form>
+                                            {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script>switcherActive = true;</script>
