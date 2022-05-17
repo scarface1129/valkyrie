@@ -23,6 +23,7 @@ class Blogs(models.Model):
 	media           = models.ImageField(upload_to='media', blank=False, null=False)
 	timestamp       = models.DateTimeField( auto_now_add= True)
 	updated         = models.DateTimeField(auto_now= True)
+	barn            = models.BooleanField(default=True)
 
 
 	def get_absolute_url(self):

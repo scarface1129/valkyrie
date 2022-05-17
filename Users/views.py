@@ -68,3 +68,14 @@ class ProfileDetail(LoginRequiredMixin, DetailView):
         latest = Blogs.objects.all().order_by('-id').first()
         context = {'object': profile, 'blog_count': count, 'latest': latest, 'blog_list': blog}
         return render(request, 'Users/profile.html', context )
+
+def BlockUser(self, pk):
+    user = get_object_or_404(User, id = pk)
+    print(user.is_active)
+    if user.is_active is True:
+        user.is_active = False
+        user.save()
+    else:
+        user.is_active = True
+        user.save()
+    return redirect('Users:profilelist')

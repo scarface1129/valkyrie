@@ -1,8 +1,10 @@
 <div id="search-section">
-    <form class="container">
-        <input type="text" class="form form-control" id="search" placeholder="Search a post...">
-        <input type="submit" value="search" class="d-none">
-        <div id="results"></div>
+    <form class="container" action='{% url 'Blog:search' %}' method='GET'>
+    <input type="submit" value="search" class=" btn btn-dark float-right mt-3">
+        <input type="text" class="form form-control" id="search" name= 'search' placeholder="Search a post...">
+        
+        <div id="results">
+        </div>
     </form>
     <i class="search-panel-toggle fa fa-close fas fa-times"></i>
     <i class="fas fa-spinner"></i>
@@ -16,8 +18,8 @@ data-src="content/images/2019/07/thomas-griesbeck-149034-min.jpg">
         <div class="container d-md-flex align-items justify-content-between">
             <p>Valkyrie &copy; 2022.</p>
             <div class="social-icons">
-                <a href="https://www.facebook.com/republicgamer1/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/RepublicGamer1" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
                 <a href="rss/index.html" taget="_blank" rel="noopener"><i class="fa fa-rss"></i></a>
             </div>
         </div>

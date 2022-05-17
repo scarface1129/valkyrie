@@ -47,7 +47,9 @@ data-src="{{object.media.url}}">
             <div class="container d-md-flex align-items-center">
                 <span class="badge badge-primary">Latest Post</span>
                 <a href="{% url 'Blog:Blog_detail' latest.id %}" class="d-md-inline-flex d-block">{{latest.title}} by  <span>{{latest.user.username}}</span></a>
-                <span class="badge post-visibility post-paid">paid</span>
+                {% if request.user.id == 1 %}
+                <a href='{% url 'Users:block' object.id %}' class="badge post-visibility post-paid"><span>Block User</span></a>
+                {% endif %}
             </div>
         </div>
 

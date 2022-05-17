@@ -9,7 +9,7 @@ from django.urls import reverse
 class BlogListView(ListView):
 
     def get(self,request):
-        Blog = Blogs.objects.all().order_by('-id')[:8]
+        Blog = Blogs.objects.filter(barn = True).order_by('-id')[:8]
         context = {'blog_list': Blog}
         
         return render(request, "Blog/blogs_list.html", context)
@@ -105,3 +105,22 @@ def CategoryDelete(self, pk):
     category = BlogCategory.objects.get(id = pk)
     category.delete()
     return redirect('Blog:categories-post')
+
+def BarnPost(self, pk):
+    blog = Blogs.objects.get(id = pk)
+    if blog.barn is True:
+        blog.barn = False
+        blog.save()
+    else:
+        blog.barn = True
+        blog.save()
+    return redirect('Blog:Blog_list')
+
+
+class Search(LoginRequiredMixin, View):
+    def get(self,request,  *args, **kwargs):
+        key = request.GET.get('search').strip()
+        Blog = Blogs.objects.filter(title__icontains = key)
+        latest = Blogs.objects.all().order_by('-id').first()
+        context = {'blog':Blog, 'latest':latest}
+        return render(request, 'Blog/search.html', context )

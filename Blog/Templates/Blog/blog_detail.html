@@ -10,9 +10,15 @@
                     <div class="col-sm-12 col-md col-lg col-xs-12">
                         <span class="animated fadeInDown badge post-visibility post-public">public</span>
                         <h1 class="animated fadeInUp">{{object.title}}</h1>
+                        {% if request.user.id == 1 %}
                         <div class="post-tags animated fadeIn">
-                                <a href="../tag/getting-started/index.html">Getting Started</a>
+                                <a href="{% url 'Blog:blog_barn' object.id %}">Barn Post</a>
                         </div>
+                        {% else %}
+                        <div class="post-tags animated fadeIn">
+                                <a href="">Getting Started</a>
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="col-sm-12 col-md col-lg col-xs-12 spacing-public">
                         <p class="animated fadeInDown d-none d-sm-block">{{object.precont}}</p>
@@ -55,7 +61,7 @@
 <h3 id="thereareafewthingsthatyoushouldknowupfront">{{object.title}}</h3>
 
 <p>{{object.content}}</p>
-<p>The main thing you'll want to read about next is probably: <a href="../the-editor/index.html">the Ghost editor</a>.</p>
+<p>The main thing you'll want to read about next is probably: <a href="#">the Ghost editor</a>.</p>
 
 </article>
 
