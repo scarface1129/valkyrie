@@ -17,7 +17,7 @@
                                         <span class="badge animated fadeInDown post-visibility post-paid">paid</span>
                                         <h1 class="animated fadeInUp">{{item.title}}</h1>
                                         <div class="post-tags animated fadeIn">
-                                                <a href="{% url 'Blog:Blog_category_detail' %}">{{item.category}}</a>
+                                                <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md col-lg col-xs-12">
@@ -59,7 +59,7 @@
                                         <span class="badge animated fadeInDown post-visibility post-public">public</span>
                                         <h1 class="animated fadeInUp">{{item.title}}</h1>
                                         <div class="post-tags animated fadeIn">
-                                                <a href="{% url 'Blog:Blog_category_detail' %}">{{item.category}}</a>
+                                                <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md col-lg col-xs-12">
@@ -163,7 +163,7 @@
                                 <div class="post-info">
                                     <h2><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h2>
                                     <div class="post-tags">
-                                            <a href="{% url 'Blog:Blog_category_detail' %}">{{item.category}}</a>
+                                            <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                     </div>
                                     <div class="separator"></div>
                                     <p class="d-none d-sm-block">{{item.precont}}</p>
@@ -185,7 +185,7 @@
                                 <h3><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h3>
                                 <div class="post-tags">
                                     <span class="badge post-visibility post-public">public</span>
-                                        <a href="{% url 'Blog:Blog_category_detail' %}">{{item.category}}</a>
+                                        <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                 </div>
                                 <div class="share-icons">
                                     <div class="icon-container">

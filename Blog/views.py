@@ -9,7 +9,7 @@ from django.urls import reverse
 class BlogListView(ListView):
 
     def get(self,request):
-        Blog = Blogs.objects.filter(barn = True).order_by('-id')[:8]
+        Blog = Blogs.objects.filter(barn = False).order_by('-id')[:8]
         context = {'blog_list': Blog}
         
         return render(request, "Blog/blogs_list.html", context)
@@ -69,18 +69,18 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 class BlogCategoryList(LoginRequiredMixin,ListView):
      def get(self, request):	
         category = BlogCategory.objects.all()
-        latest = Blogs.objects.all().order_by('-id').first()
+        latest = Blogs.objects.filter(barn=False).order_by('-id').first()
         context = {'object_list': category,'latest': latest}
         return render(request, 'Blog/blog_category.html', context )
 
 class BlogCategoryDetail(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):	
         pk = self.kwargs['pk']
-        profile = BlogCategory.objects.get(id = pk)
+        category = BlogCategory.objects.get(id = pk)
         count = Blogs.objects.filter(category = pk).count()
-        blog = Blogs.objects.filter(category = pk).order_by('-id')
-        latest = Blogs.objects.all().order_by('-id').first()
-        context = {'object': profile, 'blog_count': count, 'latest': latest, 'blog_list': blog}
+        blog = Blogs.objects.filter(category = pk, barn = True).order_by('-id')
+        latest = Blogs.objects.filter(barn=False).order_by('-id').first()
+        context = {'object': category, 'blog_count': count, 'latest': latest, 'blog_list': blog}
         return render(request, 'Blog/blog_category_detail.html', context )
 
 class BlogCategorytCreateView(LoginRequiredMixin, CreateView):
@@ -107,14 +107,15 @@ def CategoryDelete(self, pk):
     return redirect('Blog:categories-post')
 
 def BarnPost(self, pk):
-    blog = Blogs.objects.get(id = pk)
-    if blog.barn is True:
-        blog.barn = False
-        blog.save()
-    else:
-        blog.barn = True
-        blog.save()
-    return redirect('Blog:Blog_list')
+    if self.user.is_superuser:
+        blog = Blogs.objects.get(id = pk)
+        if blog.barn is False:
+            blog.barn = True
+            blog.save()
+        else:
+            blog.barn = False
+            blog.save()
+    return redirect('admin')
 
 
 class Search(LoginRequiredMixin, View):

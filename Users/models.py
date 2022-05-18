@@ -17,7 +17,7 @@ User = settings.AUTH_USER_MODEL
 class Profile(models.Model):
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name           = models.CharField(max_length=120, null=True)
-    phone_number        = PhoneNumberField(null=True, unique=True)
+    phone_number        = models.CharField(max_length=30, blank=True, null=True)
     Country             = models.CharField(max_length=120, null=True)
     address             = models.TextField(blank=True, null=True)
     updated             = models.DateTimeField(auto_now= True)

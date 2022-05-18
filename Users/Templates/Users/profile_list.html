@@ -32,8 +32,13 @@
 				{% for item in object_list %}
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 		                    <div class="author-widget post-presentation">
+                                {% if item.media %}
 		                        <div class="author-cover lazy background"
 		                            data-src="{{item.media.url}}">
+                                {% else %}
+                                    <div class="author-cover lazy background"
+		                            data-src="">
+                                {% endif %}
 		                            <div class="gradient gradient1">
 		                                <div class="share-icons icons-visible animated fadeIn">
 		                                    <div class="icon-container">

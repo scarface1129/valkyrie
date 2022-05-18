@@ -4,10 +4,12 @@ from Users.views import RegisterView, activate_user_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
+from Users.views import Admin
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('myAdmin/', Admin.as_view(), name = 'admin'),
     path('register/', RegisterView.as_view(), name=('register')),
     path('activate/<code>', activate_user_view, name='activate'),
     path('profile/', include('Users.urls')),

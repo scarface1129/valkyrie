@@ -68,14 +68,14 @@ data-src="">
                                 <div class="post-info">
                                     <h2><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h2>
                                     <div class="post-tags">
-                                            <a href="tag/history/index.html">{{item.category}}</a>
+                                            <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                     </div>
                                     <div class="separator"></div>
                                     <p class="d-none d-sm-block">{{item.precont}}</p>
                                     <a href="{% url 'Blog:Blog_detail' item.id %}" class="btn btn-no-background">Read Post <i class="fa fa-chevron-right"></i></a>
                                 </div>
                                 <div class="float-bottom">
-                                        <a href="author/diego/index.html" class="vertical-align author-info">
+                                        <a href="{% url 'Users:profile' item.user.id %}" class="vertical-align author-info">
                                         {% if item.media %}
                                             <div class="author-image background lazy "  data-src="{{item.media.url}}"></div>{{item.user}}
                                         {% else %}
@@ -94,11 +94,11 @@ data-src="">
                                 <h3><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h3>
                                 <div class="post-tags">
                                     <span class="badge post-visibility post-public">public</span>
-                                        <a href="tag/history/index.html">{{item.category}}</a>
+                                        <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                 </div>
                                 <div class="share-icons">
                                     <div class="icon-container">
-                                        <a href="author/diego/index.html" class="author-info">
+                                        <a href="{% url 'Users:profile' item.user.id %}" class="author-info">
                                         {% if item.media %}
                                             <div class="author-image background lazy" data-src="{{item.media.url}}"></div>
                                         {% else %}
@@ -149,7 +149,7 @@ data-src="">
                                 </div>
                             </div>
                             <div class="float-bottom">
-                                    <a href="author/diego/index.html" class="vertical-align author-info">
+                                    <a href="{% url 'Users:profile' item.user.id %}" class="vertical-align author-info">
                                         {% if item.media %}
                                             <div class="author-image background lazy "  data-src="{{item.media.url}}"></div>{{item.user}}
                                         {% else %}
