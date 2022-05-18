@@ -78,7 +78,7 @@ class BlogCategoryDetail(LoginRequiredMixin, DetailView):
         pk = self.kwargs['pk']
         category = BlogCategory.objects.get(id = pk)
         count = Blogs.objects.filter(category = pk).count()
-        blog = Blogs.objects.filter(category = pk, barn = True).order_by('-id')
+        blog = Blogs.objects.filter(category = pk, barn = False).order_by('-id')
         latest = Blogs.objects.filter(barn=False).order_by('-id').first()
         context = {'object': category, 'blog_count': count, 'latest': latest, 'blog_list': blog}
         return render(request, 'Blog/blog_category_detail.html', context )
@@ -117,7 +117,6 @@ def BarnPost(self, pk):
             blog.save()
     return redirect('admin')
 
-
 class Search(LoginRequiredMixin, View):
     def get(self,request,  *args, **kwargs):
         key = request.GET.get('search').strip()
@@ -125,3 +124,5 @@ class Search(LoginRequiredMixin, View):
         latest = Blogs.objects.all().order_by('-id').first()
         context = {'blog':Blog, 'latest':latest}
         return render(request, 'Blog/search.html', context )
+
+

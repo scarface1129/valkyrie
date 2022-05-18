@@ -51,7 +51,7 @@ data-src="">
             <div class="container d-md-flex align-items-center">
                 <span class="badge badge-primary">Latest Post</span>
                 <a href="{% url 'Blog:Blog_detail' latest.id %}" class="d-md-inline-flex d-block">{{latest.title}} by  <span>{{latest.user.username}}</span></a>
-                {% if request.user.id == 1 %}
+                {% if request.user.is_superuser == True %}
                 <a href='{% url 'Users:block' object.id %}' class="badge post-visibility post-paid"><span>Block User</span></a>
                 {% endif %}
             </div>

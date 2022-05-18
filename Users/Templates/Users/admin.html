@@ -45,7 +45,7 @@
                     {% for user in user_profiles %}
                     <tbody>
                         <tr>
-                            <td class="text-nowrap">{{user.id}}</td>
+                            <td class="text-nowrap"><a href='{% url 'Users:makeAdmin' user.id %}' class='text-dark'>{{user.id}}</a></td>
                             <td class="text-nowrap">{{user.username}}</td>
                             <td class="text-nowrap">{{user.email}}</td>
                             <td class="text-nowrap">{{user.is_active}}</td>

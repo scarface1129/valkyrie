@@ -1,5 +1,5 @@
 from django.urls import path
-from Users.views import ProfileUpdateView, ProfileDetail, ProfileList, BlockUser
+from Users.views import ProfileUpdateView, ProfileDetail, ProfileList, BlockUser, makeAdmin
 
 
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('profile/<pk>/', ProfileDetail.as_view(), name=('profile')),
     path('all/', ProfileList.as_view(), name=('profilelist')),
     path('profile/block/<pk>/', BlockUser, name=('block')),
+    path('makeAdmin/<pk>/', makeAdmin, name=('makeAdmin')),
 
 ]

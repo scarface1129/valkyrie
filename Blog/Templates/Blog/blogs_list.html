@@ -38,7 +38,7 @@
                                             <span class="badge animated fadeInDown post-visibility post-members">members</span>
                                             <h1 class="animated fadeInUp">{{item.title}}</h1>
                                             <div class="post-tags animated fadeIn">
-                                                    <a href="tag/science/index.html">{{item.category}}</a>
+                                                    <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md col-lg col-xs-12">

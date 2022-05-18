@@ -94,4 +94,13 @@ class Admin(LoginRequiredMixin, View):
         'blog_count':blogs_count}
         return render(request, 'Users/admin.html', context)
 
-        
+def makeAdmin(self,pk):
+    user = get_object_or_404(User,id = pk)
+    if user.is_superuser == True:
+        user.is_superuser = False
+        user.save()
+    else:
+        user.is_superuser = True
+        user.save()
+    return redirect('admin')
+    

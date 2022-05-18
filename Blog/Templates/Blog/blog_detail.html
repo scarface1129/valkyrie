@@ -10,7 +10,7 @@
                     <div class="col-sm-12 col-md col-lg col-xs-12">
                         <span class="animated fadeInDown badge post-visibility post-public">public</span>
                         <h1 class="animated fadeInUp">{{object.title}}</h1>
-                        {% if request.user.id == 1 %}
+                        {% if request.user.is_superuser == True %}
                         <div class="post-tags animated fadeIn">
                                 <a href="{% url 'Blog:blog_barn' object.id %}">Barn Post</a>
                         </div>
