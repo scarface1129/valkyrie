@@ -34,7 +34,7 @@
 		                    <div class="author-widget post-presentation">
                                 {% if item.media %}
 		                        <div class="author-cover lazy background"
-		                            data-src="{{item.media.url}}">
+		                            data-src="">
                                 {% else %}
                                     <div class="author-cover lazy background"
 		                            data-src="">
@@ -49,7 +49,11 @@
 		                                        </div>
 		                                    </div>
 		                                </div>
-		                                <div class="author-image background lazy" data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+                                        {% if item.media %}
+		                                <div class="author-image background lazy" data-src="{{item.media.url}}"></div>
+                                        {% else %}
+		                                <div class="author-image background lazy" data-src=""></div>
+                                        {% endif %}
                                         <h2><a href="{% url 'Users:profile' item.id %}">{{item.user.username}}</a></h2>
 		                            </div>
 		                        </div>
