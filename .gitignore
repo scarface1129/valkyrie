@@ -1,3 +1,4 @@
 python,
 pycharm+all,
 django
+db.sqlite3
