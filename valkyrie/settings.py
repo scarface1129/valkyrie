@@ -61,7 +61,7 @@ ROOT_URLCONF = 'valkyrie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\Agbo emmanuel\projects\Django Projects\Blog\Templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,7 +137,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 MEDIAFILES_DIRS = [
     os.path.join(BASE_DIR, '/media/'),
