@@ -15,7 +15,7 @@ urlpatterns = [
     path('profile/', include('Users.urls')),
     path('blog/', include('Blog.urls')),
     path('about_us/', TemplateView.as_view(template_name='about.html'), name="about")
-]
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
