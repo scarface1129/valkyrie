@@ -61,7 +61,7 @@ ROOT_URLCONF = 'valkyrie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,17 +73,7 @@ TEMPLATES = [
         },
     },
 ]
-def findMyWay(*relativeComponents):
-    return os.path.join(os.path.dirname(__file__), *relativeComponents).replace("\\","/")
 
-TEMPLATE_LOADERS = (
-    "django.template.loaders.filesystem.Loader",
-    "django.template.loaders.app_directories.Loader",
-)
-
-TEMPLATE_DIRS = (
-    findMyWay("templates"),
-)
 WSGI_APPLICATION = 'valkyrie.wsgi.application'
 AUTH_USER_MODEL = "Users.User"
 
@@ -144,7 +134,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = '/staticfiles'
-STATICFILES_STORAGE = 'myproject.storage.S3Storage'
 
 MEDIA_URL = '/media/'
 MEDIAFILES_DIRS = [
