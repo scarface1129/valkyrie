@@ -18,10 +18,9 @@
         
 
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600|Oswald:400,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="/static/assets/built/css/extra4931.css" >
-        <link href="/static/assets/images/1.jpg" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/built/css/extra4931.css' %}" >
         
-        <link href="/static/assets/built/css/style4931.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/built/css/style4931.css' %}" rel="stylesheet" type="text/css"> 
 
 
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
@@ -86,7 +85,7 @@
 }
     </script>
 
-    <script defer src="/static/public/members.min4931.js"></script>
+    <script defer src="{% static 'public/members.min4931.js' %}"></script>
     <meta name="generator" content="Ghost 3.14" />
     <link rel="alternate" type="application/rss+xml" title="Valkyrie" href="rss/index.html" />
 
@@ -94,9 +93,9 @@
     <body class="home-template">
                 {%include 'snippet/nav.html'%}          
             {%block content%}
-            {% comment %} content {% endcomment %}
             {%endblock content%}
             {%include 'snippet/footer.html'%}
 
     </body>
+    
     </html>

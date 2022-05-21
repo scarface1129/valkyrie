@@ -33,13 +33,13 @@ data-src="content/images/2019/07/thomas-griesbeck-149034-min.jpg">
             var endMessage = 'No more posts';
             var Message = 'More posts';
         </script>
+{% load static %}
 
-        <script src="/static/assets/built/js/extra4931.js?v=cf893e589b"></script>
+        <script src="{% static 'assets/built/js/extra4931.js?v=cf893e589b' %}"></script>
         
-        <script src="/static/assets/built/js/main4931.js?v=cf893e589b"></script>
+        <script src="{% static 'assets/built/js/main4931.js?v=cf893e589b' %}"></script>
    
-        <script src="static/assets/built/js/extra4931.js?v=cf893e589b"></script>
-            <script src="static/assets/built/js/extra-post4931.js?v=cf893e589b"></script>
+            <script src="{% static 'assets/built/js/extra-post4931.js?v=cf893e589b' %}"></script>
     <script>
         $(document).ready(function() {
             $("article").fitVids();
@@ -58,5 +58,3 @@ data-src="content/images/2019/07/thomas-griesbeck-149034-min.jpg">
             })
        });
    </script>
-
-        <script src="static/assets/built/js/main4931.js?v=cf893e589b"></script>
