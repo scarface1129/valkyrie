@@ -61,7 +61,7 @@ ROOT_URLCONF = 'valkyrie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Templates'),os.path.join(BASE_DIR, 'Users/Templates'), ],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates'),os.path.join(BASE_DIR, 'Users/Templates'),os.path.join(BASE_DIR, 'Blog/Templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,7 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGOUT_REDIRECT_URL="/accounts/login"
-LOGIN_REDIRECT_URL="/blog/blog/"
+
+LOGIN_REDIRECT_URL="/blog/blog"
 
 import django_heroku
 django_heroku.settings(locals())
