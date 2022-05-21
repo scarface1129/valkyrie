@@ -61,7 +61,7 @@ ROOT_URLCONF = 'valkyrie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Templates'), ],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates'),os.path.join(BASE_DIR, 'Users/Templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
