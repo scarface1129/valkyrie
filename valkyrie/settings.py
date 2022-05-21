@@ -134,6 +134,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = '/staticfiles'
+STATICFILES_STORAGE = 'myproject.storage.S3Storage'
 
 MEDIA_URL = '/media/'
 MEDIAFILES_DIRS = [
