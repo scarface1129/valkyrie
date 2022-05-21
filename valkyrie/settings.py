@@ -73,6 +73,10 @@ TEMPLATES = [
         },
     },
 ]
+DIRNAME = os.path.abspath(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(DIRNAME, 'templates/'),
+)
 
 WSGI_APPLICATION = 'valkyrie.wsgi.application'
 AUTH_USER_MODEL = "Users.User"
