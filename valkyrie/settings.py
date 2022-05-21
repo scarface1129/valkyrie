@@ -82,7 +82,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    findMyWay("Templates"),
+    findMyWay("templates"),
 )
 WSGI_APPLICATION = 'valkyrie.wsgi.application'
 AUTH_USER_MODEL = "Users.User"
