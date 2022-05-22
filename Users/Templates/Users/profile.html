@@ -1,20 +1,20 @@
 {% extends 'base.html'%}
 {% block head_title%} | {{block.super}}  {%endblock%}
 {% block content%} 
-{% if object.media %}
+
 <div class="post-info-wrapper post-presentation active lazy background"
-data-src="{{object.media.url}}">
-{% else %}
-<div class="post-info-wrapper post-presentation active lazy background"
-data-src="">
-{% endif %}
+data-src="https://valkyrie.xaes.dev/content/images/2018/09/thanos-pal-570889-unsplash-min-2.jpg">
     <div class="gradient gradient1">
         <div class="container d-flex align-items-center">
             <div class="row align-items-center w-100">
                 <div class="col-sm-12 col-md-12 col-lg col-xs-12">
                     <div class="d-xs-block d-sm-flex align-items-center">
                             <div class="author-image-wrapper animated fadeInLeft">
-                                <div class="author-image background lazy" data-src="https://valkyrie.xaes.dev/content/images/2018/09/10258553_490703191059311_1426632935227693623_o-min.jpg"></div>
+                                {% if object.media %}
+                                <div class="author-image background lazy" data-src="{{object.media.url}}"></div>
+                                {% else %}
+                                <div class="author-image background lazy" data-src=""></div>
+                                {% endif %}
                             </div>
                         <div class="author-info-wrapper">
                             <h2 class="animated fadeInDown">{{object.full_name}}</h2>
