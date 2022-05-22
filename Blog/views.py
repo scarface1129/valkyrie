@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Blogs, Likes, Comments, BlogCategory
 from .forms import BlogForm, LikeForm,CommentForm,CategoryForm
 from django.urls import reverse
+from Users.models import Profile
 
 class BlogListView(ListView):
 
@@ -22,10 +23,13 @@ class BlogDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self,*args, **kwargs):
         context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
         pk = self.kwargs['pk']
+        author = Blogs.objects.get(id = pk).user_id
+        profile_picture = Profile.objects.get(user_id = author)
         Like = Likes.objects.filter(post_id = pk).count()
         comment = Comments.objects.filter(post_id = pk).order_by('-id')[:3]
         context['likes'] = Like
         context['comment'] = comment
+        context['picture'] = profile_picture
         return context
 
 class BlogCreateView(LoginRequiredMixin, CreateView):

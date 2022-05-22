@@ -30,11 +30,12 @@
             <div class="post-presentation author-wrapper container">
                 <div class="d-flex justify-content-between align-items-center author-info">
                     <div class="multiple-authors animated fadeIn">
-                            <a href="../author/diego/index.html" class="vertical-align author-info no-name">
-                                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/10258553_490703191059311_1426632935227693623_o-min.jpg"></div>
-                            </a>
-                            <a href="../author/johndoe/index.html" class="vertical-align author-info no-name">
+                            <a href="{% url 'Users:profile' picture.id %}" class="vertical-align author-info no-name">
+                            {% if picture %}
+                                <div class="author-image background lazy " data-src="{{picture.media.url}}"></div>
+                            {% else%}
                                 <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+                            {% endif %}
                             </a>
                     </div>
                     <p class="animated fadeIn"><i class="far fa-clock"></i>{{object.timestamp | timesince}} ago</p>
@@ -67,12 +68,17 @@
 
 <div class="article-bottom-info d-flex justify-content-between align-items-center post-presentation">
         <div class="multiple-authors no-name">
-            <a href="../author/diego/index.html" class="vertical-align author-info no-name d-none d-sm-inline-flex">
-                <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/10258553_490703191059311_1426632935227693623_o-min.jpg"></div>
-            </a>
-            <a href="../author/johndoe/index.html" class="vertical-align author-info no-name d-none d-sm-inline-flex">
+       
+            <a href="{% url 'Users:profile' picture.id %}" class="vertical-align author-info no-name d-none d-sm-inline-flex">
+             {% if picture %}
+                <div class="author-image background lazy " data-src="{{picture.media.url}}"></div>
+            {% else %}
                 <div class="author-image background lazy " data-src="https://valkyrie.xaes.dev/content/images/2018/09/Jason-Davis-headshot-min.jpg"></div>
+            {% endif %}
             </a>
+        
+            
+        
         </div>
     <p class="d-block d-sm-none"><i class="fa fa-clock-o"></i> Published {{object.timestamp | timesince}} ago</p>
     <div class="share-icons icons-visible">
