@@ -17,7 +17,7 @@ Search)
 app_name = 'Blog'
 
 urlpatterns = [
-    path('blog/', BlogListView.as_view(), name='Blog_list'),
+    path('', BlogListView.as_view(), name='Blog_list'),
     path('create/', BlogCreateView.as_view(), name='Blog_create'),
     path('update/<pk>/', BlogUpdateView.as_view(), name='Blog_update'),
     path('detail/<pk>/', BlogDetailView.as_view(), name='Blog_detail'),

@@ -13,7 +13,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name=('register')),
     path('activate/<code>', activate_user_view, name='activate'),
     path('profile/', include('Users.urls')),
-    path('blog/', include('Blog.urls')),
+    path('', include('Blog.urls')),
     path('about_us/', TemplateView.as_view(template_name='about.html'), name="about")
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 urlpatterns += [
