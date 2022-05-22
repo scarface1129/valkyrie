@@ -64,7 +64,8 @@ class ProfileDetail(LoginRequiredMixin, DetailView):
         pk = self.kwargs['pk']
         profile = Profile.objects.get(user_id = pk)
         count = Blogs.objects.filter(user_id = pk).count()
-        blog = Blogs.objects.filter(user_id = pk, barn=True).order_by('-id')
+        blog = Blogs.objects.filter(user_id = pk, barn=False).order_by('-id')
+        print(blog)
         latest = Blogs.objects.filter(barn=False).order_by('-id').first()
         context = {'object': profile, 'blog_count': count, 'latest': latest, 'blog_list': blog}
         return render(request, 'Users/profile.html', context )
