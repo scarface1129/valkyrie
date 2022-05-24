@@ -109,6 +109,7 @@
                                             {% if request.user.is_authenticated %}
                                                 <p><a class="" href="{%  url "Users:profile" request.user.id %}">View Profile</a> </p>
                                                 <p><a class="" href="{%  url "Users:profile_update" request.user.id %}">Update Profile</a> </p>
+                                                <p><a class="" href="{%  url "password_change" %}">Change Password</a> </p>
                                             {% else %}
                                                 <form data-members-form="signin">
                                                     <span>Login / Subscribe</span>
