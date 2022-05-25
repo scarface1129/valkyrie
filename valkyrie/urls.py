@@ -15,8 +15,6 @@ urlpatterns = [
     path('activate/<code>', activate_user_view, name='activate'),
     path('profile/', include('Users.urls')),
     path('', include('Blog.urls')),
-    path(r'^password_change/$', auth_views.PasswordChangeView.as_view(template_name='registration/password_change_form.html'), name="password_change"),
-
     path('about_us/', TemplateView.as_view(template_name='about.html'), name="about")
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 urlpatterns += [
