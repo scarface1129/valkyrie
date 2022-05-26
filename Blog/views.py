@@ -6,13 +6,16 @@ from .models import Blogs, Likes, Comments, BlogCategory
 from .forms import BlogForm, LikeForm,CommentForm,CategoryForm
 from django.urls import reverse
 from Users.models import Profile
-
+# using SendGrid's Python Library
+# https://github.com/sendgrid/sendgrid-python
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 class BlogListView(ListView):
 
     def get(self,request):
         Blog = Blogs.objects.filter(barn = False).order_by('-id')[:8]
         context = {'blog_list': Blog}
-        
         return render(request, "Blog/blogs_list.html", context)
 
 class BlogDetailView(LoginRequiredMixin, DetailView):
