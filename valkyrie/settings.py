@@ -23,14 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zofd9gpi@-jiz+4tw)cu%9-c1f+bpa=#@b+f9j7iqj94o2i6tv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://valkyrie-chuks.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'agboemmanuel002@gmail.com'
+EMAIL_HOST_PASSWORD = '08032884565'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
