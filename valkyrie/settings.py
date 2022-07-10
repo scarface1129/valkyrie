@@ -29,15 +29,14 @@ ALLOWED_HOSTS = ['https://valkyrie-chuks.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
-# if DEBUG:
-#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'agboemmanuel002@gmail.com'
-EMAIL_HOST_PASSWORD = '08032884565'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'agboemmanuel002@gmail.com'
+# EMAIL_HOST_PASSWORD = '08032884565'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
