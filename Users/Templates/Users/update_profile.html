@@ -1,7 +1,27 @@
 {% extends 'base.html'%}
 {% block head_title%} | {{block.super}}  {%endblock%}
 {% block content%} 
+<style>
 
+.cont {
+    width:50%;
+}
+
+@media (max-width: 480px){
+    .cont{
+        width:100%;
+    }
+}@media (max-width: 700px){
+    .cont{
+        width:80%;
+    }
+}@media (max-width: 900px){
+    .cont{
+        width:80%;
+    }
+}
+
+</style>
     <div class="page-info-wrapper post-presentation lazy active background"
     data-src="https://images.unsplash.com/photo-1536562833330-a59dc2305a5c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;5e29ef7df943648877b7a7de70b0f58f">
         <div class="gradient gradient1">
@@ -24,15 +44,43 @@
             </div>
         </div>
 
-    <div id="main" class="container">
+    <div id="main" class="container cont">
+        {{profile.full_name}}
         <div>
             {%if form.errors.non_field_errors %}
                 {{ form.errors.non_field_errors }}
                 {%endif%}
             <div>
-                <form class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                    {{ form.as_p}}
-                    <button type="submit" class="btn btn-primary px-4"> save </button>
+                {% comment %} <form method='POST'>{{form.as_p}}</form> {% endcomment %}
+                <form class="form-control bg-dark text-center p-5" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    <div>
+                    <label class="text-primary" for="id_full_name">Full name: {{profile.full_name}}</label> 
+                    <input class='form-control  center text-primary' value={{profile.full_name}} type="text" name="full_name" maxlength="120" required="" id="id_full_name">
+                    </div>
+                    <div>
+                    <label class="text-primary" for="id_phone_number">Phone number:</label> 
+                    <input class='form-control  center text-primary' value={{profile.phone_number}} type="text" name="phone_number" maxlength="30" id="id_phone_number">
+                    </div>
+                    <div>
+                    <label class="text-primary" for="id_address">Address:</label> 
+                    <textarea name="address" class='form-control   center text-primary'  cols="40" rows="10" id="id_address">{{profile.address}}</textarea>
+                    </div>
+                    <div>
+                    <label class="text-primary" for="id_media">Media:</label>
+                     <i class="text-primary">Currently:</i> <a href="/media/{{profile.media}}">{{profile.media}}</a><br>
+                    <i class="text-primary">Change:</i> 
+                    <input class='form-control  center text-primary' type="file" name="media" accept="image/*" id="id_media">
+                    <div>
+                    <label class="text-primary" for="id_Country">Country:</label> 
+                    <input class='form-control  center text-primary' value={{profile.Country}} type="text" name="Country" maxlength="120" required="" id="id_Country">
+                    </div>
+                    <div class='clearfix'>
+                    <label class="text-primary" for="id_About">About:</label> 
+                    <textarea class='form-control  center text-primary' name="About" cols="40" rows="10" maxlength="1000" required="" id="id_About">value={{profile.About}}</textarea>
+                    </div>
+                    <div class='clearfix'>
+                    <button type="submit" class="btn btn-primary px-4 mt-5 float-right"> save </button>
+                    </div>
                 </form>
             </div>
         </div>

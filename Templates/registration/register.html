@@ -26,7 +26,7 @@
             </div>
         </div>
 
-    <div id="main" class="container">
+    <div id="main" class="container cont">
         <div>
             {% if form.errors.non_field_errors %}
                 {{ form.errors.non_field_errors }}
@@ -43,12 +43,32 @@
               {% endif %}
             {% endif %}
             <div>
-                <form action="{% url 'register' %}" class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                    {{form.as_p}}
-                  <input type="submit" class="btn btn-primary px-4" value="Register" />
-                  <input type="hidden"  name="next" value="{{ next }}" />
+                <form action="/register/" class="form-control bg-dark w-50 container text-center p-5" method="POST" enctype="multipart/form-data"> 
+                  <input class='form-control center text-primary' type="hidden" name="csrfmiddlewaretoken" value="NBRnvajyQUue7TuBzsOagocLfvPLWQ9Gwn3DqPaF9lxyFg9dmPl6uVKiwVFwTMfm">
+                  <div>
+                  <label class='text-primary' for="id_username">Username:</label>
+                  <input class='form-control center text-primary' type="text" name="username" maxlength="150" required="" id="id_username">
+                  </div>
+                  <div>
+                  <label class='text-primary' for="id_email">Email address:</label>
+                   <span class="helptext text-muted">Required. 50 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                  <input class='form-control center text-primary' type="email" name="email" maxlength="254" id="id_email">
+                  </div>
+                  <div>
+                  <label class='text-primary' for="id_password1">Password:</label> 
+                  <input class='form-control center text-primary' type="password" name="password1" required="" id="id_password1">
+                  </div>
+                  <div class='clearfix'>
+                  <label class='text-primary' for="id_password2">Password confirmation:</label> 
+                  <input class='form-control center text-primary' type="password" name="password2" required="" id="id_password2">
+                  </div>
+                  <div class='clearfix'>
+                  <input type="submit" class="btn btn-primary px-4 mt-5 float-right" value="Register">
+                  </div>
+				          <p class='mt-5'>Would You Like To <a href="{% url 'login'%}">Login</a></p>
+
+                  <input type="hidden" name="next" value="">
                 </form>
-				<p>Would You Like To <a href="{% url 'login'%}">Login</a></p>
                
             </div>
         </div>

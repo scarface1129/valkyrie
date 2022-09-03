@@ -46,25 +46,29 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'Users/update_profile.html'
     form_class = ProfileUpdate
     login_url = '/login/'
-
+    def get_context_data(self,*args, **kwargs):
+        context = super(ProfileUpdateView, self).get_context_data(*args, **kwargs)
+        pk = self.kwargs['pk']
+        profile = Profile.objects.filter(user_id = pk)[0]
+        context['profile'] = profile
+        return context
     def get_queryset(self):
         pk = self.kwargs['pk']
-        print(Profile.objects.filter(user_id = pk))
         return Profile.objects.filter(user_id = pk)
-class ProfileList(LoginRequiredMixin,ListView):
+class ProfileList(ListView):
      def get(self, request):	
         profile = Profile.objects.all()
-        latest = Blogs.objects.filter(barn=False).order_by('-id').first()
+        latest = Blogs.objects.filter(barn=False,reviwed=True).order_by('-id').first()
         context = {'object_list': profile,'latest': latest}
         return render(request, 'Users/profile_list.html', context )
 
 
-class ProfileDetail(LoginRequiredMixin, DetailView):
+class ProfileDetail(DetailView):
     def get(self, request, *args, **kwargs):	
         pk = self.kwargs['pk']
         profile = Profile.objects.get(user_id = pk)
         count = Blogs.objects.filter(user_id = pk).count()
-        blog = Blogs.objects.filter(user_id = pk, barn=False).order_by('-id')
+        blog = Blogs.objects.filter(user_id = pk, barn=False, reviwed=True).order_by('-id')
         print(blog)
         latest = Blogs.objects.filter(barn=False).order_by('-id').first()
         context = {'object': profile, 'blog_count': count, 'latest': latest, 'blog_list': blog}

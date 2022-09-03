@@ -11,13 +11,16 @@ BlogCategorytCreateView,
 BlogCategoryUpdateView,
 CategoryDelete,
 BarnPost,
-Search)
+Search,
+UnReviewdBlog,
+ActivatePost)
 
 
 app_name = 'Blog'
 
 urlpatterns = [
     path('', BlogListView.as_view(), name='Blog_list'),
+    path('unreviewed-Blog', UnReviewdBlog.as_view(), name='BlogReview'),
     path('create/', BlogCreateView.as_view(), name='Blog_create'),
     path('update/<pk>/', BlogUpdateView.as_view(), name='Blog_update'),
     path('detail/<pk>/', BlogDetailView.as_view(), name='Blog_detail'),
@@ -29,6 +32,7 @@ urlpatterns = [
     path('category/update/<pk>/', BlogCategoryUpdateView.as_view(), name='category_update'),
     path('category/delete/<pk>/', CategoryDelete, name='category_delete'),
     path('barn/<pk>/', BarnPost, name='blog_barn'),
+    path('activate_post/<pk>/', ActivatePost, name='activate_post'),
     path('search/', Search.as_view(), name='search'),
 
 ]

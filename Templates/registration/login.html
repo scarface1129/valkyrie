@@ -29,10 +29,10 @@
     <div id="main" class="container">
         <div>
             {% if form.errors.non_field_errors %}
-                {{ form.errors.non_field_errors }}
+                <p class='text-danger'>{{ form.errors.non_field_errors }}</p>
             {% endif%}
             {% if form.errors %}
-              <p>Your username and password didn't match. Please try again.</p>
+              <p class='text-danger'>Your username and password didn't match. Please try again.</p>
             {% endif %}
             {% if next %}
               {% if user.is_authenticated %}

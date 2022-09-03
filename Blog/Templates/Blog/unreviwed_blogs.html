@@ -3,6 +3,7 @@
 {%extends "base.html"%}
 {%block head_title%}{{block.super}}{%endblock%}
 {%block content%}
+{% load static %}
 <div class="hero-unit">
     <div id="featured-news-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -148,6 +149,7 @@
                         <div class="post post-presentation second-post lazy  background"
                             data-src="{{item.media.url}}">
                             <div class="gradient gradient2">
+                                <a href='{% url 'Blog:activate_post' item.id %}'><span class="badge post-visibility post-members">activate</span></a>
                                 <h3><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h3>
                                 <div class="post-tags">
                                     <span class="badge post-visibility post-public">public</span>
@@ -156,7 +158,7 @@
                                 <div class="share-icons">
                                     <div class="icon-container">
                                         <a href="{% url 'Users:profile' item.user.id %}" class="author-info">
-                                            <div class="author-image background lazy">View Authors</div>
+                                            <div class="author-image background lazy">View Author</div>
                                         </a>
                                         <a href='{% url 'Blog:Blog_detail' item.id %}'><i class="fa fa-share d-none d-sm-block "></i></a>
                                         
@@ -169,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                
+  
             {% endfor %}
         </div>
     </div>

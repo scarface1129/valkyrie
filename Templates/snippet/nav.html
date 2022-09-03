@@ -27,7 +27,7 @@
                     {% if user.is_authenticated %}
                     <div class="dropdown dropdown-form subscribe subscribe-form">
                         <a href="#" class="nav-link change-theme-color dropdown-toggle navbar-toggler d-lg-none btn-control" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-user"></i></a>
-                        <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu animated fadeIn" style='width:150px;' aria-labelledby="dropdownMenuButton">
                             <div class="info-wrapper">
                                 {% if request.user.is_authenticated %}
                                     <p><a class="" href="{%  url "Users:profile" request.user.id %}">View Profile</a> </p>
@@ -63,22 +63,25 @@
         <li class="nav-item">
             <a class="nav-link" href="{%  url "about" %}">About Us</a>
         </li>
-        {% if request.user.is_authenticated != True %}
-        <li class="nav-item">
-            <a class="nav-link" href="{%  url "login" %}">Login</a>
-        </li>
-        {% endif %}
-        
-        {% if request.user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'Users:profilelist' %}">Author List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'Blog:Blog_create'%}">Create Blog</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="{% url 'Blog:categories-post' %}">Tag List</a>
         </li>
+        {% if request.user.is_authenticated != True %}
+        <li class="nav-item">
+            <a class="nav-link" href="{%  url "login" %}">Login</a>
+        </li>
+        
+        {% endif %}
+        
+        {% if request.user.is_authenticated %}
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Blog:Blog_create'%}">Create Blog</a>
+        </li>
+        
         <li class="nav-item">
             <a class="nav-link" href="{%  url "logout" %}">Logout</a>
         </li>
@@ -111,8 +114,8 @@
                         <li class="nav-item d-none d-lg-block">
                             <div class="dropdown dropdown-form subscribe subscribe-form">
                                 <a href="#" class="nav-link change-theme-color dropdown-toggle " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="alternate"><i class="fa fa-user"></i></a>
-                                <div class="dropdown-menu animated fadeIn" aria-labelledby="dropdownMenuButton">
-                                        <div class="info-wrapper">
+                                <div class="dropdown-menu animated fadeIn"  aria-labelledby="dropdownMenuButton">
+                                        <div class="info-wrapper" >
                                             {% if request.user.is_authenticated %}
                                                 <p><a class="" href="{%  url "Users:profile" request.user.id %}">View Profile</a> </p>
                                                 <p><a class="" href="{%  url "Users:profile_update" request.user.id %}">Update Profile</a> </p>

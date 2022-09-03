@@ -44,7 +44,9 @@
                                 <div class="separator"></div>
                                 <h3><a href="{% url 'Blog:Blog_category_detail' obj.id %} ">{{obj.name}}</a></h3>
                                 <p>{{obj.about}}</p>
+                                {% if request.user.is_superuser == True %}
                                 <a href='{% url 'Blog:category_update' obj.id %}' class="animated fadeInUp badge post-paid"><span>Update</span></a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

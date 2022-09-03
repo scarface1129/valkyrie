@@ -1,7 +1,27 @@
  {%extends 'base.html'%}
 {%block head_title%} | {{block.super}}  {%endblock%}
 {%block content%} 
+<style>
 
+.cont {
+    width:50%;
+}
+
+@media (max-width: 480px){
+    .cont{
+        width:100%;
+    }
+}@media (max-width: 700px){
+    .cont{
+        width:80%;
+    }
+}@media (max-width: 900px){
+    .cont{
+        width:80%;
+    }
+}
+
+</style>
 <!-- POST INFO WRAPPER -->
     <div class="page-info-wrapper post-presentation lazy active background"
     data-src="https://images.unsplash.com/photo-1536562833330-a59dc2305a5c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;5e29ef7df943648877b7a7de70b0f58f">
@@ -25,22 +45,54 @@
             </div>
         </div>
 
-    <div id="main" class="container">
+    <div id="main" class="container cont">
         <div>
             {%if form.errors.non_field_errors %}
-                {{ form.errors.non_field_errors }}
-                {%endif%}
+            {{ form.errors.non_field_errors }}
+            {%endif%}
+            <form class="form-control bg-dark mb-5" method="POST" enctype="multipart/form-data"> <input type="hidden" name="csrfmiddlewaretoken" value="zclhjVDcnDSprsavyBrxxUt53RDEjCeIiYxxeAujG4VJZPP7lYYtLr1Ckhtpgyko">
+                <div class=''>
+                <label class='text-primary' for="id_title">Title:</label>
+                 <input class='form-control w-50 center text-primary' type="text" name="title" maxlength="120" required="" id="id_title">
+                </div>
+                <div>
+                <label class='text-primary' for="id_content">Content:</label>
+                {% comment %} <span class="helptext">separate each item by a comma</span><br> {% endcomment %}
+                 <textarea class='form-control  center text-primary' name="content" cols="40" rows="10" required="" id="id_content"></textarea>
+                  
+                </div>
+                <div>
+                <label class='text-primary' for="id_media">Media:</label>
+                 <input class='form-control  center text-primary' type="file" name="media" accept="image/*" required="" id="id_media">
+                </div>
+                <div>
+                <label class='text-primary' for="id_category">Category:</label>
+                 <select class='form-control w-50 center text-primary' name="category" required="" id="id_category">
+                <option value="" selected="">---------</option>
+                {% for items in categories %}
+                <option value="{{items.id}}">{{items.name}}</option>
+                {% endfor %}
+                </select>
+                </div>
+                <div class='clearfix'>
+                <label class='text-primary' for="id_precont">Precont:</label>
+                 <input class='form-control  center text-primary'type="text" name="precont" maxlength="120" required="" id="id_precont">
+                 </div>
+                <div class='clearfix'>
+                <input type="submit" class="btn btn-secondary px-4 mt-5 float-right" >
+                </div>
+            </form>
             <div>
-                <form class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                    {{ form.as_p}}
-                    <button type="submit" class="btn btn-primary px-4"> save </button>
-                </form>
+                
             </div>
         </div>
     </div>
 
     
-
+{% comment %} <form class='form-control bg-dark text-center p-5' method="POST" enctype="multipart/form-data"> {% csrf_token %}
+{{ form.as_p}}
+<button type="submit" class="btn btn-primary px-4"> save </button>
+</form> {% endcomment %}
   
 
 

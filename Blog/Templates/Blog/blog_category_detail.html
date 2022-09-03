@@ -3,7 +3,7 @@
 {% block content%} 
 {% if object.media%}
 <div class="page-info-wrapper post-presentation active lazy background"
-data-src="{{object.media.url}}">
+    data-src="https://images.unsplash.com/photo-1536562833330-a59dc2305a5c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;5e29ef7df943648877b7a7de70b0f58f">
 {% else %}
 <div class="page-info-wrapper post-presentation active lazy background"
 data-src="">
@@ -43,50 +43,7 @@ data-src="">
     <div class="container">
         <div class="row" id="post-loop-wrapper">
             {% for item in blog_list %}
-                {% if forloop.counter == 1 %}
-                    <div class="col-xs-12 col-sm-12 col-lg-8 col-md-12">
-                        {% if item.media %}
-                            <div class="post post-presentation first-post lazy  background"
-                            data-src="{{item.media.url}}">
-                        {% else %}
-                            <div class="post post-presentation first-post lazy  background"
-                            data-src="">
-                        {% endif %}
-                            <div class="gradient gradient2 d-flex align-items-center">
-                                <span class="badge post-visibility post-paid">paid</span>
-                                <div class="float-top">
-                                    <div class="share-icons d-none d-sm-block">
-                                        <div class="icon-container">
-                                            <i class="fa fa-share"></i>
-                                            <div class="icons">
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://valkyrie.xaes.dev/thor-the-thunder-god/" onclick="window.open(this.href, 'facebook-share','width=580, height=300');return false;"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="https://twitter.com/share?text=Thor%2C%20the%20Nordic%20God&amp;url=https://valkyrie.xaes.dev/thor-the-thunder-god/" onclick="window.open(this.href, 'twitter-share', 'width=580, height=300');return false;"><i class="fab fa-twitter"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-info">
-                                    <h2><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.title}}</a></h2>
-                                    <div class="post-tags">
-                                            <a href="{% url 'Blog:Blog_category_detail' item.category.id %}">{{item.category}}</a>
-                                    </div>
-                                    <div class="separator"></div>
-                                    <p class="d-none d-sm-block">{{item.precont}}</p>
-                                    <a href="{% url 'Blog:Blog_detail' item.id %}" class="btn btn-no-background">Read Post <i class="fa fa-chevron-right"></i></a>
-                                </div>
-                                <div class="float-bottom">
-                                        <a href="{% url 'Users:profile' item.user.id %}" class="vertical-align author-info">
-                                        {% if item.media %}
-                                            <div class="author-image background lazy "  data-src="{{item.media.url}}"></div>{{item.user}}
-                                        {% else %}
-                                        <div class="author-image background lazy "  data-src=""></div>{{item.user}}
-                                        {% endif %}
-                                        </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% elif forloop.counter == 2 %}
+                    
                     <div class="col-xs-12 col-sm-12 col-lg-4 col-md-12">
                         <div class="post post-presentation second-post lazy  background"
                             data-src="{{item.media.url}}">
@@ -99,16 +56,10 @@ data-src="">
                                 <div class="share-icons">
                                     <div class="icon-container">
                                         <a href="{% url 'Users:profile' item.user.id %}" class="author-info">
-                                        {% if item.media %}
-                                            <div class="author-image background lazy" data-src="{{item.media.url}}"></div>
-                                        {% else %}
-                                            <div class="author-image background lazy" data-src="{{item.media.url}}"></div>
-                                        {% endif %}
+                                            <div class="author-image background lazy">Author: {{item.user.username}}</div>
                                         </a>
-                                        <i class="fa fa-share d-none d-sm-block "></i>
+                                        <a href="{% url 'Blog:Blog_detail' item.id %}"><i class="fa fa-share d-none d-sm-block "></i></a>
                                         <div class="icons d-none d-sm-block">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://valkyrie.xaes.dev/a-peak-into-scandinavias-origin/" onclick="window.open(this.href, 'facebook-share','width=580, height=300');return false;"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="https://twitter.com/share?text=A%20peek%20into%20Scandinavia's%20origin&amp;url=https://valkyrie.xaes.dev/a-peak-into-scandinavias-origin/" onclick="window.open(this.href, 'twitter-share', 'width=580, height=300');return false;"><i class="fab fa-twitter"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -117,50 +68,9 @@ data-src="">
                                     <a href="{% url 'Blog:Blog_detail' item.id %}" class="btn btn-no-background">Read Post <i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div>                                          
                     </div>
-                {% else %}
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                {% if item.media %}
-                    <div class="post post-square lazy post-presentation  background"
-                        data-src="{{item.media.url}}">
-                {% else %}
-                    <div class="post post-square lazy post-presentation  background"
-                        data-src="">
-                {% endif %}
-                        <div class="gradient gradient2 d-flex align-items-center">
-                            <span class="badge post-visibility post-members">members</span>
-                            <div class="float-top">
-                                <div href="#" class="share-icons d-none d-sm-block">
-                                    <div class="icon-container">
-                                        <i class="fa fa-share"></i>
-                                        <div class="icons">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://valkyrie.xaes.dev/astronomers-announce-discovering-ten-tiny-jovian-satellites/" onclick="window.open(this.href, 'facebook-share','width=580, height=300');return false;"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="https://twitter.com/share?text=Astronomers%20announce%20discovering%20ten%20tiny%20Jovian%20satellites&amp;url=https://valkyrie.xaes.dev/astronomers-announce-discovering-ten-tiny-jovian-satellites/" onclick="window.open(this.href, 'twitter-share', 'width=580, height=300');return false;"><i class="fab fa-twitter"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-info">
-                                <div class="separator"></div>
-                                <h3><a href="{% url 'Blog:Blog_detail' item.id %}">{{item.precont}}</a></h3>
-                                <div class="post-tags">
-                                        <a href="tag/science/index.html">{{item.category}}</a>
-                                </div>
-                            </div>
-                            <div class="float-bottom">
-                                    <a href="{% url 'Users:profile' item.user.id %}" class="vertical-align author-info">
-                                        {% if item.media %}
-                                            <div class="author-image background lazy "  data-src="{{item.media.url}}"></div>{{item.user}}
-                                        {% else %}
-                                        <div class="author-image background lazy "  data-src=""></div>{{item.user}}
-                                        {% endif %}
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
+                
             {% endfor %}
         </div>
     </div>

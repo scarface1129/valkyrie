@@ -2,7 +2,18 @@
 {%block head_title%} | {{block.super}}  {%endblock%}
 {%block content%}
 
+<style>
+.like-button {
+    background:#fff;
+    border-radius:8px;
+    color:#000;
+    border-outline: 2px white;
+}
+.like-button:hover {
+    cursor:pointer;
+}
 
+</style>
 <div class="post-info-wrapper post-presentation active background lazy" data-src="{{object.media.url}}">
         <div class="gradient gradient1">
             <div class="container d-flex align-items-center">
@@ -46,19 +57,20 @@
 
             <div class="latest-post">
             <div class="container d-md-flex align-items-center">
-                <span class="badge badge-primary">{{likes}} likes on this post</span>
+                <span class="badge badge-primary" >{{likes}} likes on this post</span>
                 <form method = 'POST' action = '{% url 'Blog:Likecreate'%}'>{% csrf_token %}
                     <input type="hidden" name="post" value="{{ object.id }}">
                     <input type="hidden" name="status" value= 'True'></input>
-                    <button class="badge badge-primary" type = 'submit'>Like Post </button>
+                    <button class='like-button' type = 'submit'>Like Post </button>
                 </form>
+                
                 <span class="badge post-visibility post-paid">Author: {{object.user.username.upper}}</span>
             </div>
         </div>
 
     <div id="main" class="container">
                 <article>
-    <!--kg-card-begin: markdown--><p>We welcom you to our site and appreciate your effort so far in trying to increase your self knowledge using The informations on our site</p>
+    <!--kg-card-begin: markdown--><p>We welcome you to our site and appreciate your effort so far in trying to increase your self knowledge using The informations on our site</p>
 <h3 id="thereareafewthingsthatyoushouldknowupfront">{{object.title}}</h3>
 
 <p>{{object.content}}</p>
@@ -120,8 +132,10 @@
                         <div class="post-info">
                         <form class='input_class' method = 'POST' action = '{% url 'Blog:Commentcreate'%}'>{% csrf_token %}
                             <input type="hidden" name="post" value="{{ object.id }}">
-                            <textarea  cols="40" rows="10" name="content" placeholder='Write You Comments On the Post' style="background: #212529; margin: auto ;"></textarea>
-                            <button class='btn btn-dark btn-sm' type = 'submit'>Submit </button>
+                            <textarea class='form-control  center text-primary' required  cols="40" rows="10" name="content" placeholder='Write Your Comments On the Post' style="margin: auto ;"></textarea>
+                            <div class='clearfix'>
+                            <input type="submit" class="btn btn-secondary px-4 mt-1 float-right" >
+                            </div>
                         </form> 
                         </div>
                     </div>
