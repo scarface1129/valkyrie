@@ -7,9 +7,17 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-sm-12 col-md col-lg col-xs-12">
-                        <h1 class="animated fadeInUp">Categories</h1>
-                        <p class="animated fadeInUp">Browse through all our content</p>
+                        <h1 class="animated fadeInUp">{{aspect}} Stacks</h1>
+                        {% if aspect == 'Coding' %}
+                        <p class="animated fadeInUp">Browse through all the stacks that involves coding</p>
+                        {% elif aspect == 'Non-Coding' %}
+                        <p class="animated fadeInUp">Browse through all the stacks that doesnt involve coding</p>
+                        {% else %}
+                        <p class="animated fadeInUp">Browse through all our stacks</p>
+                        {% endif %}
+                        {% if request.user.is_superuser == True %}
                         <a href='{% url 'Blog:category_create' %}' class="animated fadeInUp badge post-paid"><span>Create New Category</span></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

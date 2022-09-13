@@ -15,7 +15,7 @@ data-src="">
                     <h1 class="animated fadeInUp">Tag: {{object.name}}</h1>
                     <p class="animated fadeInUp">{{object.about}}</p>
                     {% if request.user.is_superuser == True %}
-                    <a href='{% url 'Blog:category_delete' object.id %}' class="animated fadeInUp badge post-paid"><span>Delete Category</span></a>
+                    <a href='{% url 'Blog:category_delete' object.id %}' class="animated fadeInUp badge post-paid"><span>Delete {{object.name}}</span></a>
                     {% endif %}
                 </div>
             </div>
@@ -41,6 +41,78 @@ data-src="">
     {% endif %}
 <div id="main">
     <div class="container">
+        <article>
+        
+        <h4> The little you need to know about {{object.name}}</h4>
+            {% if object.article1 %}
+            <p> 
+                {{object.article1}} 
+            </p><hr>
+            {% endif %}
+            {% if object.article2 %}
+            <p>
+                {{object.article2}}
+            </p></s=>
+            {% endif %}
+            {% if object.article3 %}
+            <p> 
+                {{object.article3}}
+            </p>
+            {% endif %}
+            {% if not object.article1 %}
+            <p> 
+                NO ARTICLES YET
+            </p>
+            {% endif %}
+
+            {% if object.name == 'Web Development'%}
+            <p>
+                <a href='{% url 'webStack' %}'><strong>I need you to understand that there are two parts to this paricular stack</strong></a></p>
+            <p>
+            {% endif %}
+        </article>
+
+        <section class='container'>
+        
+            <div class='row'>
+            {% for items in language %}
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <div class="post post-presentation second-post lazy  background"
+                            data-src="">
+                            <div class="gradient gradient2">
+                                <h3><a href="">{{items.name}}</a></h3>
+                                
+                                <div class="mt-5">
+                                    <p class='h6'>{{items.about}}</p>
+                                    {% comment %} <a href="" class="btn btn-no-background">Perfect Road Map <i class="fa fa-chevron-right"></i></a> {% endcomment %}
+                                </div>
+                                <div class=''>
+                                    <h5>Learn The Language First!!!</h5>
+                                </div>
+                                <div class='float-bottom'>
+                                <h6 class='text-capitalize'>FrameWorks under {{items.name}} for {{object.name}}</h6>
+                                {% for framework in frameworks %}
+                                {% if framework %}
+                                {% if framework.language.id == items.id and object in framework.stack.all %}
+                                <p class='ml-3 h3'>{{framework.name}} {% if framework.dev %}({{framework.dev}}){%endif%} ===> <a href=''>Road Map <i class="fa fa-chevron-right"></i></a></p>
+                                {% endif %}
+                                {% else %}
+                                <h3>Nothing to show</h3>
+                                {% endif%}
+                                {% endfor %}
+                                
+                                </div>
+                            </div>
+                        </div>                                          
+                    </div>
+            {% endfor %}
+            </div>
+        
+        </section>
+        <div class='text-center'>
+            <h3>Posts</h3><hr>
+        </div>
+        {% if blog_list%}
         <div class="row" id="post-loop-wrapper">
             {% for item in blog_list %}
                     
@@ -73,6 +145,11 @@ data-src="">
                 
             {% endfor %}
         </div>
+        {% else %}
+        <div class='text-center'>
+            <h6 class='text-capitalize'>No Posts</h6><hr>
+        </div>
+        {% endif %}
     </div>
 </div>
 

@@ -50,7 +50,8 @@
             {%if form.errors.non_field_errors %}
             {{ form.errors.non_field_errors }}
             {%endif%}
-            <form class="form-control bg-dark mb-5" method="POST" enctype="multipart/form-data"> <input type="hidden" name="csrfmiddlewaretoken" value="zclhjVDcnDSprsavyBrxxUt53RDEjCeIiYxxeAujG4VJZPP7lYYtLr1Ckhtpgyko">
+            <form class="form-control bg-dark mb-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
                 <div class=''>
                 <label class='text-primary' for="id_title">Title:</label>
                  <input class='form-control w-50 center text-primary' type="text" name="title" maxlength="120" required="" id="id_title">

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404, redirect
 from django.views.generic import DetailView, View, CreateView, UpdateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Blogs, Likes, Comments, BlogCategory
+from .models import Blogs, Likes, Comments, BlogCategory, Language, FrameWork
 from .forms import BlogForm, LikeForm,CommentForm,CategoryForm
 from django.urls import reverse
 from Users.models import Profile
@@ -43,7 +43,6 @@ class BlogDetailView(DetailView):
 class BlogCreateView(LoginRequiredMixin, CreateView):
     template_name = "Blog/blog_create.html"
     form_class = BlogForm
-    login_url = '/login/'
     def get_context_data(self,*args, **kwargs):
         context = super(BlogCreateView, self).get_context_data(*args, **kwargs)
         categories = getCategories()
@@ -52,6 +51,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):               
         obj = form.save(commit=False)
         obj.user = self.request.user
+        obj.barn = True
         return super(BlogCreateView, self).form_valid(form)
 
 
@@ -96,10 +96,20 @@ class CommentCreateView(CreateView):
         return super(CommentCreateView, self).form_valid(form)
 
 class BlogCategoryList(ListView):
-     def get(self, request):	
-        category = BlogCategory.objects.all()
+     def get(self, request, slug):	
+        if(slug == 'coding'):
+            stack = 'Coding'
+            category = BlogCategory.objects.filter(aspect = 'True')
+        elif(slug == 'non-coding'):
+            stack = 'Non-Coding'
+            category = BlogCategory.objects.filter(aspect = 'False')
+        else:
+            stack = ''
+            category = BlogCategory.objects.all()  
+
+
         latest = Blogs.objects.filter(barn=False).order_by('-id').first()
-        context = {'object_list': category,'latest': latest}
+        context = {'object_list': category,'latest': latest, 'aspect':stack}
         return render(request, 'Blog/blog_category.html', context )
 
 class BlogCategoryDetail(DetailView):
@@ -109,13 +119,14 @@ class BlogCategoryDetail(DetailView):
         count = Blogs.objects.filter(category = pk).count()
         blog = Blogs.objects.filter(category = pk, barn = False).order_by('-id')
         latest = Blogs.objects.filter(barn=False).order_by('-id').first()
-        context = {'object': category, 'blog_count': count, 'latest': latest, 'blog_list': blog}
+        language = Language.objects.filter(stacks=category.id)
+        frameworks = FrameWork.objects.all()
+        context = {'object': category, 'blog_count': count, 'latest': latest, 'blog_list': blog, 'language':language, 'frameworks':frameworks}
         return render(request, 'Blog/blog_category_detail.html', context )
 
 class BlogCategorytCreateView(LoginRequiredMixin, CreateView):
     template_name = "Blog/category_create.html"
     form_class = CategoryForm
-    login_url = '/login/'
 
     def form_valid(self, form):               
         obj = form.save(commit=False)
@@ -151,6 +162,7 @@ def ActivatePost(self, pk):
         blog = Blogs.objects.get(id = pk)
         if blog.reviwed is False:
             blog.reviwed = True
+            blog.barn = False
             blog.save()
         else:
             blog.reviwed = False

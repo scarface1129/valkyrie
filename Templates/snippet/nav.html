@@ -1,7 +1,7 @@
 <div id="main-navbar" class="sticky-ok">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-                <a class="navbar-brand" href="{%  url "Blog:Blog_list" %}">Tech-Wise</a>
+                <a class="navbar-brand" href="{%  url "home" %}">Tech-Wise</a>
             <div class="mobile-navbar-buttons">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
@@ -61,13 +61,16 @@
         </li>
         {% endif %}
         <li class="nav-item">
+            <a class="nav-link" href="{%  url "home" %}">Home</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{%  url "about" %}">About Us</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'Users:profilelist' %}">Author List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'Blog:categories-post' %}">Tag List</a>
+            <a class="nav-link" href="{% url 'Blog:categories-post' 'all' %}">Tag List</a>
         </li>
         {% if request.user.is_authenticated != True %}
         <li class="nav-item">

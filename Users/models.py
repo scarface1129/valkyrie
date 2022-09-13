@@ -13,7 +13,7 @@ class User(AbstractUser):
     activation_key     = models.CharField(max_length=120, blank=True, null=True)
     activated          = models.BooleanField(default=False)
 
-User = settings.AUTH_USER_MODEL
+# User = settings.AUTH_USER_MODEL
 class Profile(models.Model):
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name           = models.CharField(max_length=120, null=True)
